@@ -1,0 +1,29 @@
+name: 'Eval Harness CI'
+description: 'Install package, run tests, scan for vulnerabilities'
+inputs:
+  python-version:
+    description: 'Python version to test against'
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: Set up Python ${{ inputs.python-version }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ inputs.python-version }}
+
+    - name: Install package
+      run: pip install -e ".[dev]"
+      shell: bash
+
+    - name: Run tests
+      run: pytest tests/ -v
+      shell: bash
+
+    - name: Vulnerability scan
+      uses: aquasecurity/trivy-action@0.28.0
+      with:
+        scan-type: 'fs'
+        scan-ref: '.'
+        severity: 'HIGH,CRITICAL'
+        exit-code: '1'
