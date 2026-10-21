@@ -15,3 +15,7 @@ This is the foundational repo for the 12-week GitHub Staff preparation plan. It 
 - **Agent:** LangGraph with Bedrock Claude
 - **Eval Logic:** Python-based scorer
 - **Governance:** Input sanitization and PII filtering via regex/NER
+
+## Related
+- [acrochoreo](https://github.com/victoriana/acrochoreo) — supervisor graph orchestrator (evaluation target)
+- [github-actions-reusable-workflow](https://github.com/victoriana/github-actions-reusable-workflow) — CI governance template
